@@ -6,7 +6,7 @@ import { NewsModal } from "./NewsModal";
 import { fetchLatestNews, NewsHeadline } from "../services/newsService";
 import { useTranslation } from "react-i18next";
 import resume from "./Cvjk.pdf";
-import profileImg from "../IMG_20220713_114100_482.jpg";
+import profileImg from "../assets/profile.jpg";
 
 export const Hero = () => {
   const { t, i18n } = useTranslation();
