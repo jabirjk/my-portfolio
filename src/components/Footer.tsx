@@ -1,7 +1,9 @@
 import { motion } from "motion/react";
 import { Github, Linkedin, Twitter } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="py-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
@@ -10,7 +12,7 @@ export const Footer = () => {
             JABIR<span className="text-accent">.</span>
           </a>
           <p className="text-sm text-zinc-500 mt-2">
-            © 2026 Jabir Kedir. All rights reserved.
+            © 2026 Jabir Kedir. {t("footer.rights")}
           </p>
         </div>
 
@@ -42,13 +44,13 @@ export const Footer = () => {
         </div>
 
         <div className="flex gap-8 text-sm font-medium text-zinc-400">
-          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          <a href="#" className="hover:text-white transition-colors">{t("footer.privacy")}</a>
+          <a href="#" className="hover:text-white transition-colors">{t("footer.terms")}</a>
         </div>
 
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-          <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">System Status: Optimal</span>
+          <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">{t("footer.status")}</span>
         </div>
       </div>
     </footer>

@@ -2,8 +2,10 @@ import { motion } from "motion/react";
 import { SectionHeader } from "./SectionHeader";
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Instagram } from "lucide-react";
 import { useState, FormEvent } from "react";
+import { useTranslation } from "react-i18next";
 
 export const Contact = () => {
+  const { t } = useTranslation();
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -52,7 +54,7 @@ export const Contact = () => {
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeader title="Let's Build Something" subtitle="Contact" />
+        <SectionHeader title={t("contact.title")} subtitle={t("contact.subtitle")} />
 
         <div className="grid lg:grid-cols-2 gap-20">
           <motion.div
@@ -74,7 +76,7 @@ export const Contact = () => {
                 </div>
                 <div>
                   <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Email Me</p>
-                  <p className="text-lg text-zinc-900 dark:text-white font-medium">Jabirkedir21@gmail.com</p>
+                  <a href="mailto:Jabirkedir21@gmail.com" className="text-lg text-zinc-900 dark:text-white font-medium hover:text-accent transition-colors">Jabirkedir21@gmail.com</a>
                 </div>
               </div>
               <div className="flex items-center gap-6 group">
@@ -83,7 +85,7 @@ export const Contact = () => {
                 </div>
                 <div>
                   <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Call Me</p>
-                  <p className="text-lg text-zinc-900 dark:text-white font-medium">+251910722502</p>
+                  <a href="tel:+251910722502" className="text-lg text-zinc-900 dark:text-white font-medium hover:text-accent transition-colors">+251910722502</a>
                 </div>
               </div>
               <div className="flex items-center gap-6 group">
@@ -127,7 +129,7 @@ export const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Name</label>
+                  <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">{t("contact.name")}</label>
                   <input 
                     type="text" 
                     value={formState.name}
@@ -141,7 +143,7 @@ export const Contact = () => {
                   {errors.name && <p className="text-red-500 text-[10px] font-bold uppercase tracking-wider pl-2">{errors.name}</p>}
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Email</label>
+                  <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">{t("contact.email")}</label>
                   <input 
                     type="email" 
                     value={formState.email}
@@ -156,7 +158,7 @@ export const Contact = () => {
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Message</label>
+                <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">{t("contact.message")}</label>
                 <textarea 
                   rows={5}
                   value={formState.message}
@@ -174,7 +176,7 @@ export const Contact = () => {
                 disabled={isSubmitting}
                 className="w-full py-5 bg-white text-black font-bold rounded-2xl flex items-center justify-center gap-3 hover:bg-accent hover:text-white transition-all disabled:opacity-50 group"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? "Sending..." : t("contact.send")}
                 <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
             </form>

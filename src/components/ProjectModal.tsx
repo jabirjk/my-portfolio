@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import { X, ExternalLink, Github, BookOpen, Layers, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 interface Project {
   title: string;
@@ -25,6 +26,7 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -111,7 +113,7 @@ export const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) =>
                         className="space-y-12"
                       >
                         <section>
-                          <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em] mb-6">Overview</h3>
+                          <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em] mb-6">{t("projects.modal.overview")}</h3>
                           <p className="text-xl text-zinc-300 leading-relaxed font-medium">
                             {project.longDescription || project.description}
                           </p>
@@ -119,7 +121,7 @@ export const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) =>
 
                         {project.challenge && (
                           <section className="p-8 rounded-3xl bg-white/5 border border-white/10">
-                            <h3 className="text-xs font-bold text-accent uppercase tracking-[0.2em] mb-4">The Challenge</h3>
+                            <h3 className="text-xs font-bold text-accent uppercase tracking-[0.2em] mb-4">{t("projects.modal.challenge")}</h3>
                             <p className="text-zinc-400 leading-relaxed italic">
                               "{project.challenge}"
                             </p>
@@ -128,7 +130,7 @@ export const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) =>
 
                         {project.features && (
                           <section>
-                            <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em] mb-6">Key Features</h3>
+                            <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em] mb-6">{t("projects.modal.features")}</h3>
                             <div className="grid md:grid-cols-2 gap-4">
                               {project.features.map((feature, i) => (
                                 <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-zinc-900/50 border border-white/5">
@@ -142,7 +144,7 @@ export const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) =>
 
                         {project.gallery && (
                           <section>
-                            <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em] mb-6">Gallery</h3>
+                            <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em] mb-6">{t("projects.modal.gallery")}</h3>
                             <div className="grid grid-cols-2 gap-4">
                               {project.gallery.map((img, i) => (
                                 <motion.div
@@ -169,7 +171,7 @@ export const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) =>
                 {/* Right Column: Sidebar */}
                 <div className="space-y-12">
                   <section>
-                    <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em] mb-6">Technologies</h3>
+                    <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em] mb-6">{t("projects.modal.tech")}</h3>
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((t, i) => (
                         <span
@@ -184,7 +186,7 @@ export const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) =>
 
                   {project.metrics && (
                     <section>
-                      <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em] mb-6">Impact</h3>
+                      <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em] mb-6">{t("projects.modal.impact")}</h3>
                       <div className="space-y-6">
                         {project.metrics.map((metric, i) => (
                           <div key={i} className="group">
@@ -205,7 +207,7 @@ export const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) =>
                         className="w-full py-4 bg-white text-black font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-accent hover:text-white transition-all shadow-xl"
                       >
                         <ExternalLink size={18} />
-                        Live Preview
+                        {t("projects.modal.live")}
                       </a>
                       <a
                         href={project.github}
@@ -214,7 +216,7 @@ export const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) =>
                         className="w-full py-4 glass text-white font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-white/10 transition-all"
                       >
                         <Github size={18} />
-                        View Repository
+                        {t("projects.modal.repo")}
                       </a>
                       {project.caseStudy && (
                         <a
@@ -222,7 +224,7 @@ export const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) =>
                           className="w-full py-4 glass text-white font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-white/10 transition-all"
                         >
                           <BookOpen size={18} />
-                          Full Case Study
+                          {t("projects.modal.caseStudy")}
                         </a>
                       )}
                     </div>

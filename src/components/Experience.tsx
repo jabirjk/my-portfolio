@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { SectionHeader } from "./SectionHeader";
 import { Briefcase, GraduationCap, Award } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const experiences = [
   {
@@ -27,10 +28,11 @@ const experiences = [
 ];
 
 export const Experience = () => {
+  const { t } = useTranslation();
   return (
     <section id="experience" className="py-24">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeader title="Professional Journey" subtitle="Experience" />
+        <SectionHeader title={t("experience.title")} subtitle={t("experience.subtitle")} />
 
         <div className="relative">
           {/* Vertical Line */}

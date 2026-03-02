@@ -1,8 +1,12 @@
 import { motion, useScroll, useSpring } from "motion/react";
 import { useState, useEffect } from "react";
 import { Menu, X, Github, Linkedin, Twitter } from "lucide-react";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useTranslation } from "react-i18next";
+import resume from "./Cvjk.pdf";
 
 export const Navbar = () => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -19,10 +23,10 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
+    { name: t("nav.about"), href: "#about" },
+    { name: t("nav.projects"), href: "#projects" },
+    { name: t("nav.experience"), href: "#experience" },
+    { name: t("nav.contact"), href: "#contact" },
   ];
 
   return (
@@ -92,14 +96,16 @@ export const Navbar = () => {
           </div>
 
           <motion.a
-            href="/cv.pdf"
+            href={resume}
             download
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             className="px-5 py-2 bg-white text-black text-sm font-bold rounded-full hover:bg-accent hover:text-white transition-all duration-300"
           >
-            Resume
+            {t("nav.resume")}
           </motion.a>
+          
+          <LanguageSwitcher />
         </div>
 
         {/* Mobile Toggle */}
@@ -138,6 +144,16 @@ export const Navbar = () => {
             <a href="#" target="_blank" rel="noopener noreferrer">
               <Twitter className="text-zinc-400 cursor-pointer hover:text-white transition-colors" />
             </a>
+          </div>
+          <div className="pt-4 border-t border-white/10 flex flex-col gap-4">
+            <a
+              href={resume}
+              download
+              className="w-full py-3 bg-white text-black text-center font-bold rounded-xl hover:bg-accent hover:text-white transition-all"
+            >
+              {t("nav.resume")}
+            </a>
+            <LanguageSwitcher />
           </div>
         </motion.div>
       )}

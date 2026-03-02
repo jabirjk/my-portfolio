@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { SectionHeader } from "./SectionHeader";
 import { Code2, Palette, Terminal, Globe, Cpu, Database } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const SkillBar = ({ name, level, delay }: { name: string; level: number; delay: number }) => (
   <motion.div 
@@ -27,6 +28,7 @@ const SkillBar = ({ name, level, delay }: { name: string; level: number; delay: 
 );
 
 export const About = () => {
+  const { t } = useTranslation();
   const techStack = [
     { icon: <Code2 size={24} />, name: "Frontend", tools: "React, Angular, Vue, TS" },
     { icon: <Database size={24} />, name: "Backend", tools: "Node, Java, .NET, Django" },
@@ -39,7 +41,7 @@ export const About = () => {
   return (
     <section id="about" className="py-24 relative">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeader title="About Me" subtitle="Biography" />
+        <SectionHeader title={t("about.title")} subtitle={t("about.subtitle")} />
         
         <div className="grid lg:grid-cols-2 gap-20 items-start">
           <motion.div
@@ -49,14 +51,10 @@ export const About = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <p className="text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed mb-8">
-              I am a dedicated Full Stack Developer with 4+ years of experience building 
-              scalable web applications using modern frontend and backend technologies. 
-              I specialize in designing RESTful APIs, responsive UIs, and robust database architectures.
+              {t("about.bio1")}
             </p>
             <p className="text-zinc-500 dark:text-zinc-400 mb-12">
-              Passionate about clean code, performance optimization, and solving real-world problems. 
-              With a B.Sc. in Computer Science from Haramaya University, I bring a strong 
-              theoretical foundation to practical, high-impact software development.
+              {t("about.bio2")}
             </p>
 
             <div className="grid grid-cols-2 gap-6">
@@ -94,7 +92,7 @@ export const About = () => {
             viewport={{ once: true }}
             className="glass p-10 rounded-3xl"
           >
-            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-10">Core Proficiencies</h3>
+            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-10">{t("about.skillsTitle")}</h3>
             <SkillBar name="React / Angular / Vue" level={95} delay={0.1} />
             <SkillBar name="Node.js / Express" level={90} delay={0.2} />
             <SkillBar name="Java / .NET / Django" level={85} delay={0.3} />
@@ -104,8 +102,7 @@ export const About = () => {
             
             <div className="mt-12 p-6 rounded-2xl bg-accent/5 border border-accent/10">
               <p className="text-sm italic text-zinc-500 dark:text-zinc-400">
-                "Always learning, always evolving. The tech landscape changes every day, 
-                and I'm here to master the next wave."
+                "{t("about.quote")}"
               </p>
             </div>
           </motion.div>

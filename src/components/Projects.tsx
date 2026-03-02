@@ -3,6 +3,7 @@ import { SectionHeader } from "./SectionHeader";
 import { ExternalLink, Github, Layers, Filter, Maximize2, BookOpen } from "lucide-react";
 import { useState, useMemo } from "react";
 import { ProjectModal } from "./ProjectModal";
+import { useTranslation } from "react-i18next";
 
 const projects = [
   {
@@ -211,6 +212,7 @@ const projects = [
 ];
 
 export const Projects = () => {
+  const { t } = useTranslation();
   const [filter, setFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -242,7 +244,7 @@ export const Projects = () => {
         onClose={() => setIsModalOpen(false)} 
       />
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeader title="Featured Projects" subtitle="Portfolio" />
+        <SectionHeader title={t("projects.title")} subtitle={t("projects.subtitle")} />
 
         {/* Filter Bar */}
         <div className="mb-12 flex flex-wrap items-center gap-4">
@@ -395,7 +397,7 @@ export const Projects = () => {
           className="mt-16 text-center"
         >
           <button className="px-8 py-4 glass rounded-full text-white font-bold hover:bg-white/10 transition-all">
-            View All Projects
+            {t("projects.viewProject")}
           </button>
         </motion.div>
       </div>

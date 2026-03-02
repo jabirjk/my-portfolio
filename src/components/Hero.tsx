@@ -4,25 +4,30 @@ import { useEffect, useState } from "react";
 import { Particles } from "./Particles";
 import { NewsModal } from "./NewsModal";
 import { fetchLatestNews, NewsHeadline } from "../services/newsService";
+import { useTranslation } from "react-i18next";
+import resume from "./Cvjk.pdf";
+import profileImg from "../IMG_20220713_114100_482.jpg";
 
 export const Hero = () => {
+  const { t, i18n } = useTranslation();
   const [text, setText] = useState("");
   const [isNewsOpen, setIsNewsOpen] = useState(false);
   const [news, setNews] = useState<NewsHeadline[]>([]);
   const [isLoadingNews, setIsLoadingNews] = useState(false);
   const [newsError, setNewsError] = useState<string | null>(null);
 
-  const fullText = "Building scalable and high-performance web applications.";
+  const fullText = t("hero.subtitle");
   
   useEffect(() => {
     let i = 0;
+    setText(""); // Reset text when language changes
     const interval = setInterval(() => {
       setText(fullText.slice(0, i));
       i++;
       if (i > fullText.length) clearInterval(interval);
     }, 50);
     return () => clearInterval(interval);
-  }, []);
+  }, [fullText, i18n.language]);
 
   const handleFetchNews = async () => {
     setIsNewsOpen(true);
@@ -68,7 +73,7 @@ export const Hero = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
             </span>
-            AVAILABLE FOR NEW PROJECTS
+            {t("hero.status")}
           </motion.div>
 
           <h1 className="text-6xl md:text-8xl font-bold leading-[0.9] mb-6 text-zinc-900 dark:text-white">
@@ -93,7 +98,7 @@ export const Hero = () => {
               className="px-8 py-4 bg-white text-black font-bold rounded-full flex items-center gap-2 hover:bg-accent hover:text-white transition-all group relative overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2">
-                View My Work
+                {t("hero.viewWork")}
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </span>
             </motion.button>
@@ -109,10 +114,10 @@ export const Hero = () => {
               className="px-8 py-4 glass text-zinc-900 dark:text-white font-bold rounded-full flex items-center gap-2 hover:bg-white/10 transition-all group"
             >
               <Newspaper size={20} className="group-hover:rotate-12 transition-transform" />
-              Latest News
+              {t("hero.latestNews")}
             </motion.button>
           <motion.a
-            href="/cv.pdf"
+            href={resume}
             download
             whileHover={{ 
               scale: 1.05,
@@ -122,7 +127,7 @@ export const Hero = () => {
             className="px-8 py-4 glass text-zinc-900 dark:text-white font-bold rounded-full flex items-center gap-2 hover:bg-white/10 transition-all group"
           >
             <Download size={20} className="group-hover:translate-y-0.5 transition-transform" />
-            Download CV
+            {t("hero.downloadCV")}
           </motion.a>
           </div>
         </motion.div>
@@ -141,7 +146,7 @@ export const Hero = () => {
             <div className="w-full h-full glass rounded-3xl overflow-hidden p-4 relative group">
               <div className="w-full h-full rounded-2xl bg-zinc-900 overflow-hidden relative">
                 <img 
-                  src="src/IMG_20220713_114100_482.jpg" 
+                  src={profileImg} 
                   alt="Jabir Kedir" 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
                   referrerPolicy="no-referrer"
@@ -160,8 +165,8 @@ export const Hero = () => {
                     <MousePointer2 className="text-white" size={20} />
                   </div>
                   <div>
-                    <p className="text-[10px] text-zinc-400 uppercase font-bold">Experience</p>
-                    <p className="text-sm font-bold text-zinc-900 dark:text-white">4+ Years</p>
+                    <p className="text-[10px] text-zinc-400 uppercase font-bold">{t("hero.experience")}</p>
+                    <p className="text-sm font-bold text-zinc-900 dark:text-white">{t("hero.years")}</p>
                   </div>
                 </div>
               </motion.div>
@@ -177,7 +182,7 @@ export const Hero = () => {
         transition={{ delay: 1.5 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Scroll</span>
+        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{t("hero.scroll")}</span>
         <div className="w-[1px] h-12 bg-gradient-to-b from-accent to-transparent" />
       </motion.div>
     </section>
