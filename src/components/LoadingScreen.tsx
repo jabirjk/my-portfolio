@@ -15,7 +15,7 @@ export const LoadingScreen = () => {
           transition={{ duration: 0.5 }}
           className="text-4xl font-display font-bold text-white tracking-tighter mb-8"
         >
-          ELITE<span className="text-accent">.</span>
+          JABIR<span className="text-accent">.</span>
         </motion.div>
         
         <div className="w-48 h-[2px] bg-zinc-900 rounded-full overflow-hidden relative">
